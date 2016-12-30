@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FDA2E35C-D261-4DD7-90E7-F8159620851D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zel</RootNamespace>
+    <AssemblyName>Zel.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.1.8\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Asp.cs" />
+    <Compile Include="Classes\ConcurrentProcessor.cs" />
+    <Compile Include="Classes\IConcurrentData.cs" />
+    <Compile Include="Classes\IConcurrentProcessor.cs" />
+    <Compile Include="Classes\LogSource.cs" />
+    <Compile Include="Classes\LogData.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="NameValue.cs" />
+    <Compile Include="NameValueList.cs" />
+    <Compile Include="Compressor.cs" />
+    <Compile Include="Classes\DatabaseCommand.cs" />
+    <Compile Include="Classes\DatabaseCommandParameter.cs" />
+    <Compile Include="Http\HttpQueryProvider.cs" />
+    <Compile Include="Classes\IHttpQueryProvider.cs" />
+    <Compile Include="Classes\IHttpQuery.cs" />
+    <Compile Include="Classes\IEncryptor.cs" />
+    <Compile Include="Classes\IHttpResult.cs" />
+    <Compile Include="Classes\ICompressor.cs" />
+    <Compile Include="Classes\ParallelProcessOptions.cs" />
+    <Compile Include="Classes\ParallelProcessToken.cs" />
+    <Compile Include="Reflection.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="Sql.cs" />
+    <Compile Include="Classes\AesKeySize.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="Encryptor.cs" />
+    <Compile Include="CoreExtensions.cs" />
+    <Compile Include="Classes\HttpContextDoesNotExistException.cs" />
+    <Compile Include="Logging\FileLogStore.cs" />
+    <Compile Include="Classes\ILogStore.cs" />
+    <Compile Include="Classes\LogCode.cs" />
+    <Compile Include="Classes\LogStore.cs" />
+    <Compile Include="Validation\DataAnnotationValidator.cs" />
+    <Compile Include="Classes\DelayValidationAttribute.cs" />
+    <Compile Include="Classes\ValidationList.cs" />
+    <Compile Include="Classes\ValidationMessage.cs" />
+    <Compile Include="Zip.cs" />
+    <Compile Include="Classes\HttpMethod.cs" />
+    <Compile Include="Http\HttpResult.cs" />
+    <Compile Include="HttpQuery.cs" />
+    <Compile Include="Classes\LogMessage.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
