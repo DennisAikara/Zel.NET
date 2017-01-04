@@ -29,15 +29,6 @@ namespace Zel.WorkManager
         private IContainerService _containerService;
         private Func<IContainerService, WorkResult> _workFunc;
 
-        protected Worker(ILogger logger)
-        {
-            if (logger == null)
-            {
-                throw new ArgumentNullException("logger");
-            }
-            _logger = logger;
-        }
-
         #endregion
 
         #region IWorker Members
@@ -176,8 +167,14 @@ namespace Zel.WorkManager
 
         #region Protected 
 
-        protected Worker(string name, LogCode workingLogCode, LogCode finishedWorkingLogCode)
+        protected Worker(string name, LogCode workingLogCode, LogCode finishedWorkingLogCode, ILogger logger)
         {
+            if (logger == null)
+            {
+                throw new ArgumentNullException("logger");
+            }
+            _logger = logger;
+
             _finishedWorkingLogCode = finishedWorkingLogCode;
             _workingLogCode = workingLogCode;
 

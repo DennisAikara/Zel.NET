@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Asp.cs" />
+    <Compile Include="Classes\ConcurrentData.cs" />
     <Compile Include="Classes\ConcurrentProcessor.cs" />
     <Compile Include="Classes\IConcurrentData.cs" />
     <Compile Include="Classes\IConcurrentProcessor.cs" />
