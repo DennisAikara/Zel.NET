@@ -38,13 +38,10 @@ namespace Zel.DataAccess
                 @Url,
                 @UrlReferrer,
                 @Message,
-                @MachineName,
-                @ApplicationPath,
                 @Data,
                 @Source,
                 @SourceId,
                 @Code,
-                @Handled,
                 @CreatedOn,
                 @CreatedBy";
 

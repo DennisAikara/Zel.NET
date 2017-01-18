@@ -19,7 +19,7 @@ namespace Zel.WorkManager.Ws
         {
             _logger =
                 new Logger(new SqlLogStore(ConfigurationManager.ConnectionStrings["Log"].ConnectionString, null),
-                    Guid.NewGuid().ToString("N"));
+                    Guid.NewGuid());
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
 
             InitializeComponent();

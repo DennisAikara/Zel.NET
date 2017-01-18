@@ -20,7 +20,7 @@ namespace Zel.Classes
         /// <param name="source"></param>
         /// <param name="batchIdentifier"></param>
         public LogMessage(string message, string type, LogCode code, List<LogData> data, LogSource source,
-            string batchIdentifier)
+            Guid batchIdentifier)
         {
             if (string.IsNullOrWhiteSpace(message))
             {
@@ -62,7 +62,7 @@ namespace Zel.Classes
         /// <summary>
         ///     Message Id
         /// </summary>
-        public string BatchIdentifier { get; private set; }
+        public Guid BatchIdentifier { get; private set; }
 
         /// <summary>
         ///     Log creation time

@@ -41,10 +41,7 @@ namespace Zel.WorkManager
                 _registeredWaitHandle = null;
             }
 
-            if (DisposeAction != null)
-            {
-                DisposeAction();
-            }
+            DisposeAction?.Invoke();
         }
 
         public DateTime LastRunTime { get; private set; }
@@ -63,10 +60,7 @@ namespace Zel.WorkManager
             if (State == WorkerState.Working)
             {
                 _stopWorking = true;
-                if (StopWorkAction != null)
-                {
-                    StopWorkAction();
-                }
+                StopWorkAction?.Invoke();
             }
             else
             {

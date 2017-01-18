@@ -7,7 +7,19 @@ namespace Zel
 {
     public interface ILogger
     {
-        string BatchIdentifier { get; }
+        Guid BatchIdentifier { get; }
+
+        /// <summary>
+        ///     Logs trace
+        /// </summary>
+        /// <param name="message"> Message to log </param>
+        void LogTrace(params object[] message);
+
+        /// <summary>
+        ///     Logs debug
+        /// </summary>
+        /// <param name="message"> Message to log </param>
+        void LogDebug(params object[] message);
 
         /// <summary>
         ///     Logs information

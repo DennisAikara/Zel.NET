@@ -12,19 +12,55 @@ namespace Zel
 {
     public class Logger : ILogger
     {
+        #region Nested type: LogType
+
+        /// <summary>
+        ///     Log type
+        /// </summary>
+        public enum LogType
+        {
+            Trace,
+            Debug,
+            Information,
+            Warning,
+            Exception,
+            Critical
+        }
+
+        #endregion
+
         private readonly ILogStore _logStore;
+        private readonly LogType _minimumLogLevel;
 
         #region Constructor
 
-        public Logger(ILogStore logStore, string batchIdentifier)
+        public Logger(ILogStore logStore, Guid batchIdentifier, string minimumLogLevel = "Information")
         {
             if (logStore == null)
             {
-                throw new ArgumentNullException("logStore");
+                throw new ArgumentNullException(nameof(logStore));
+            }
+
+            switch (minimumLogLevel)
+            {
+                case "Trace":
+                    _minimumLogLevel = LogType.Trace;
+                    break;
+                case "Debug":
+                    _minimumLogLevel = LogType.Debug;
+                    break;
+                default:
+                    _minimumLogLevel = LogType.Information;
+                    break;
             }
 
             _logStore = logStore;
-            BatchIdentifier = batchIdentifier ?? Guid.NewGuid().ToString("N");
+            if (batchIdentifier==null)
+            {
+                batchIdentifier = Guid.NewGuid();
+            }
+            BatchIdentifier = batchIdentifier;
+            LogTrace("Logger created with log level: ", _minimumLogLevel);
         }
 
         #endregion
@@ -71,24 +107,33 @@ namespace Zel
 
         #endregion
 
-        #region Nested type: LogType
-
-        /// <summary>
-        ///     Log type
-        /// </summary>
-        private enum LogType
-        {
-            Information,
-            Warning,
-            Critical,
-            Exception
-        }
-
-        #endregion
-
         #region ILogger Members
 
-        public string BatchIdentifier { get; }
+        public Guid BatchIdentifier { get; }
+
+        /// <summary>
+        ///     Logs trace
+        /// </summary>
+        /// <param name="message"> Message to log </param>
+        public void LogTrace(params object[] message)
+        {
+            if (LogType.Trace >= _minimumLogLevel)
+            {
+                Log(message, LogType.Trace);
+            }
+        }
+
+        /// <summary>
+        ///     Logs debug
+        /// </summary>
+        /// <param name="message"> Message to log </param>
+        public void LogDebug(params object[] message)
+        {
+            if (LogType.Debug >= _minimumLogLevel)
+            {
+                Log(message, LogType.Debug);
+            }
+        }
 
         /// <summary>
         ///     Logs information
